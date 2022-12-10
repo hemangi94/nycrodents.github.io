@@ -50,6 +50,80 @@ For our analyses, we combined the two datasets by year and borough.
 
 # Exploratory Analysis
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(plotly)
+library(readr)
+library(patchwork)
+
+knitr::opts_chunk$set(
+	echo = TRUE,
+	warning = FALSE,
+	fig.width = 8, 
+  fig.height = 6,
+  out.width = "90%")
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis")
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+```
+
+```{r rat data, include=FALSE}
+rat_df = read_csv("Rat_Sightings.csv") %>%
+  janitor::clean_names() %>%
+  mutate(created_date = gsub(" .*","", created_date),
+         address_type = str_to_title(address_type),
+         city = str_to_title(city),
+         borough = str_to_title(borough),
+         location_type = recode(location_type, "Other (Explain Below)" = "Other")) %>%
+  separate(created_date, into = c("month", "day", "year"), sep = "/") %>%
+  mutate(year = as.numeric(year)) %>%
+  filter(borough != "Unspecified") %>%
+  select(month, day, year, location_type, address_type, city, borough, latitude, longitude)
+```
+
+```{r asthma data, include=FALSE}
+asthma_df = read_csv("asthma_ER_visits_adults.csv") %>%
+  janitor::clean_names() %>%
+  rename(
+    year = time
+  ) %>%
+  filter(geo_type == "Borough") %>%
+  group_by(year, geography) %>%
+  select(year, geography, age_adjusted_rate_per_10_000, estimated_annual_rate_per_10_000, number)
+```
+
+
+```{r merge, include=FALSE}
+asthma_rat_df <- left_join(rat_df, asthma_df, by = c('year' = 'year', 'borough' = 'geography'))
+```
+
+
+```{r, echo=FALSE}
+overall_rat_line =
+  rat_df %>%
+  group_by(year) %>%
+  count() %>%
+  summarise(n_obs = n) %>% 
+  ggplot(aes(x = year, y = n_obs)) + 
+  geom_line() +
+  labs(
+    title = "Rat Sightings Over Time in NYC",
+    x = "Year",
+    y = "Number of Sightings")
+
+overall_rat_line
+
+```
 
 
 # Additional Analysis
