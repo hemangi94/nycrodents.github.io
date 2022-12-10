@@ -23,3 +23,14 @@ This project is motivated by the following questions:
 * How do rat sightings vary by borough?
 * How do rat sightings vary by location type?
 * How are rodent trends associated with asthma trends?
+
+# Data
+The data used for this project came from two sources. The [rat data](https://data.cityofnewyork.us/Social-Services/Rat-Sightings/3q43-55fe) came from NYC OpenData. The [asthma data](https://webbi1.health.ny.gov/SASStoredProcess/guest?_program=/EBI/PHIG/apps/asthma_dashboard/ad_dashboard&p=it&ind_id=ad16) came from the NY State Asthma Dashboard. The rat sighting data includes information for all rat-related 311 service requests from 2010 to the present. Variables include location type, facility type, borough, year, and coordinates (latitude and longitude). The asthma data set includes information on the prevalence of asthma rates among adults. Variables include general prevalence, borough, year, and the number of ER visits. 
+
+Data cleaning included mutating various variables to meet our needs. For example, we combined “month,” “day,” and “year” to make one “date” variable, made the year variable numeric, and reduced the datasets by selecting the variables that were of particular interest to us. We also combined the rat sightings and asthma data sets by year and borough.
+
+# Exploratory Analysis
+
+# Additional Analysis
+
+# Discussion
