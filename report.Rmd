@@ -5,3 +5,21 @@ output:
     toc: true
     toc_float: true
 ---
+
+# Background
+
+New York City is infamous for the rats that live among us. Our apartments, buildings, subway stations, trash cans, parks, and streets are home to millions of rats and other [rodents](https://www.nytimes.com/2021/11/05/nyregion/nyc-rats-sightings.html). For many New Yorkers, rats are an inevitable part of everyday life, and one that has worsened in recent years. This year alone (2022), New York's Sanitation Department has reported more than 21,600 rat complaints. This represents a 71% increase since [October 2020](https://www.npr.org/2022/10/20/1130150756/new-york-rats-trash-rule-mayor-eric-adams). The issue has gotten so bad that Mayor Adams is now looking to hire a [“bloodthirsty” director](https://www.msn.com/en-ca/news/world/nyc-is-looking-for-bloodthirsty-rat-czar-and-the-job-pays-228-000/ar-AA14Qidf?li=AAggFp4) of rodent mitigation, who is eligible to make up to $228,000. Given the prevalence of rats in this city and the recent urgency of the issue, this project primarily seeks to explore trends in rat sightings across New York City.
+
+Further, [research](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2862381/) shows that exposure to rodents is associated with various diseases and poor health outcomes, including asthma symptoms. Asthma symptoms have been increasing in middle to high-income countries, making this issue ever more critical . Understanding it can aid public health and health care combat diseases from these exposures. This is particularly an issue among communities that are historically and continually oppressed through racism and classism as they live in environments with higher levels of exposure due to air pollution, old buildings, cigarette smoke, and other factors. This project secondarily seeks to explore associations between rodent infestations and asthma prevalence in New York City.
+
+A 2019 [study](https://towardsdatascience.com/rat-city-visualizing-new-york-citys-rat-problem-f7aabd6900b2) examined what neighborhoods are “rat hotspots.” It focused on data from 2010 to 2017. It looked at changes in number of sightings over the years as well as sightings by neighborhood. In 2016 there was a peak in the number of sightings. Brooklyn seemed to have the most sightings compared to other NYC boroughs. And they mostly occurred in 3+ family apartment buildings. The study also looked at high density areas - for example parts of the Upper West Side had a higher density of sightings compared to the Upper East Side. 
+
+
+# Questions
+
+This project is motivated by the following questions: 
+
+* What trends are there in rat sightings throughout NYC?
+* How do rat sightings vary by borough?
+* How do rat sightings vary by location type?
+* How are rodent trends associated with asthma trends?
