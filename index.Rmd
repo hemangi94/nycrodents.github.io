@@ -5,3 +5,6 @@ output:
     toc: true
     toc_float: true
 ---
+
+**Exploring trends in rat sightings and their association with asthma rates in New York City**  
+By: Jenesis Merriman | Sara Kramer | Hemangi Modi | Yongzheng Li | Vasuda Kapoor
