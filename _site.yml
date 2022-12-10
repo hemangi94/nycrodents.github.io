@@ -6,7 +6,13 @@ navbar:
     - text: "Project Report"
       href: report.html
     - text: "Exploratory Analysis"
-      href: analysis.html
+      menu: 
+      - text: Rat Sightings Trends
+        href: analysis.html
+      - text: Asthma Trends
+        href: asthma_analysis.html
+    - text: "Statistical Analysis"
+      href: statistical_analysis.html
     - text: "Video Walk Through"
       href: video.html
     - icon: fa-github fa-lg

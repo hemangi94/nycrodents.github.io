@@ -333,8 +333,23 @@ div.tocify {
         <li>
   <a href="report.html">Project Report</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Exploratory Analysis
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="analysis.html">Rat Sightings Trends</a>
+    </li>
+    <li>
+      <a href="asthma_analysis.html">Asthma Trends</a>
+    </li>
+  </ul>
+</li>
 <li>
-  <a href="analysis.html">Exploratory Analysis</a>
+  <a href="statistical_analysis.html">Statistical Analysis</a>
 </li>
 <li>
   <a href="video.html">Video Walk Through</a>
@@ -405,7 +420,8 @@ number of sightings. Brooklyn seemed to have the most sightings compared
 to other NYC boroughs. And they mostly occurred in 3+ family apartment
 buildings. The study also looked at high density areas - for example
 parts of the Upper West Side had a higher density of sightings compared
-to the Upper East Side.</p>
+to the Upper East Side. We will explore similar topics, using current
+data for 2022.</p>
 </div>
 <div id="questions" class="section level1">
 <h1>Questions</h1>
@@ -417,24 +433,41 @@ to the Upper East Side.</p>
 <li>How are rodent trends associated with asthma trends?</li>
 </ul>
 </div>
-<div id="data" class="section level1">
-<h1>Data</h1>
-<p>The data used for this project came from two sources. The <a
-href="https://data.cityofnewyork.us/Social-Services/Rat-Sightings/3q43-55fe">rat
-data</a> came from NYC OpenData. The <a
-href="https://webbi1.health.ny.gov/SASStoredProcess/guest?_program=/EBI/PHIG/apps/asthma_dashboard/ad_dashboard&amp;p=it&amp;ind_id=ad16">asthma
-data</a> came from the NY State Asthma Dashboard. The rat sighting data
-includes information for all rat-related 311 service requests from 2010
-to the present. Variables include location type, facility type, borough,
-year, and coordinates (latitude and longitude). The asthma data set
-includes information on the prevalence of asthma rates among adults.
-Variables include general prevalence, borough, year, and the number of
-ER visits.</p>
-<p>Data cleaning included mutating various variables to meet our needs.
-For example, we combined “month,” “day,” and “year” to make one “date”
-variable, made the year variable numeric, and reduced the datasets by
-selecting the variables that were of particular interest to us. We also
-combined the rat sightings and asthma data sets by year and borough.</p>
+<div id="data-and-cleaning-process" class="section level1">
+<h1>Data and Cleaning Process</h1>
+<p>This project uses two main datasets for our analysis.</p>
+<p><strong>Rat Sightings</strong></p>
+<p>The <a
+href="https://data.cityofnewyork.us/Social-Services/Rat-Sightings/3q43-55fe">Rat
+Sightings data</a> is from NYC OpenData. This dataset includes
+information for all rat-related 311 service requests from 2010 to the
+present. We stored the data [locally? G drive?] since it was too large
+to upload to github. To clean the data, we changed the created_date
+variable from MM/DD/YYYY HH:MM into separate “month,” “day,” and “year”
+variables; made the year variable numeric; corrected capitalization fro
+address_type, city, and borough; recoded values for clarity; and
+filtered to remove observations in unspecified boroughs. After cleaning
+the data, our key variables are:</p>
+<ul>
+<li>month: month of rat sighting service request</li>
+<li>day: day of rat sighting service request</li>
+<li>year: year of rat sighting service request</li>
+<li>location_type: location type of rat sighting</li>
+<li>address_type: address type of rat sighting</li>
+<li>city: city of rat sighting</li>
+<li>borough: borough of rat sighting</li>
+<li>latitude: geo based latitude of incident location</li>
+<li>longitude: geo based longitude of incident location</li>
+</ul>
+<p><strong>Asthma</strong></p>
+<p>The <a
+href="https://webbi1.health.ny.gov/SASStoredProcess/guest?_program=/EBI/PHIG/apps/asthma_dashboard/ad_dashboard&amp;p=it&amp;ind_id=ad16">Asthma
+Data</a> is from the NY State Asthma Dashboard. The asthma data set
+includes information on asthma rates in the city. Variables include
+borough, year, the number of ER visits, age-adjusted rates by 10,000,
+and estimated annual rate per 100,000.</p>
+<p>For our analyses, we combined the two datasets by year and
+borough.</p>
 </div>
 <div id="exploratory-analysis" class="section level1">
 <h1>Exploratory Analysis</h1>

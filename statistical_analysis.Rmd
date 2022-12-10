@@ -1,5 +1,5 @@
 ---
-title: "Rat Sightings Analysis"
+title: "Statistical Analysis"
 output: 
   html_document:
     toc: true

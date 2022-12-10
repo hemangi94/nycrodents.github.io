@@ -12,7 +12,7 @@ New York City is infamous for the rats that live among us. Our apartments, build
 
 Further, [research](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2862381/) shows that exposure to rodents is associated with various diseases and poor health outcomes, including asthma symptoms. Asthma symptoms have been increasing in middle to high-income countries, making this issue ever more critical . Understanding it can aid public health and health care combat diseases from these exposures. This is particularly an issue among communities that are historically and continually oppressed through racism and classism as they live in environments with higher levels of exposure due to air pollution, old buildings, cigarette smoke, and other factors. This project secondarily seeks to explore associations between rodent infestations and asthma prevalence in New York City.
 
-A 2019 [study](https://towardsdatascience.com/rat-city-visualizing-new-york-citys-rat-problem-f7aabd6900b2) examined what neighborhoods are “rat hotspots.” It focused on data from 2010 to 2017. It looked at changes in number of sightings over the years as well as sightings by neighborhood. In 2016 there was a peak in the number of sightings. Brooklyn seemed to have the most sightings compared to other NYC boroughs. And they mostly occurred in 3+ family apartment buildings. The study also looked at high density areas - for example parts of the Upper West Side had a higher density of sightings compared to the Upper East Side. 
+A 2019 [study](https://towardsdatascience.com/rat-city-visualizing-new-york-citys-rat-problem-f7aabd6900b2) examined what neighborhoods are “rat hotspots.” It focused on data from 2010 to 2017. It looked at changes in number of sightings over the years as well as sightings by neighborhood. In 2016 there was a peak in the number of sightings. Brooklyn seemed to have the most sightings compared to other NYC boroughs. And they mostly occurred in 3+ family apartment buildings. The study also looked at high density areas - for example parts of the Upper West Side had a higher density of sightings compared to the Upper East Side. We will explore similar topics, using current data for 2022.
 
 
 # Questions
@@ -24,12 +24,33 @@ This project is motivated by the following questions:
 * How do rat sightings vary by location type?
 * How are rodent trends associated with asthma trends?
 
-# Data
-The data used for this project came from two sources. The [rat data](https://data.cityofnewyork.us/Social-Services/Rat-Sightings/3q43-55fe) came from NYC OpenData. The [asthma data](https://webbi1.health.ny.gov/SASStoredProcess/guest?_program=/EBI/PHIG/apps/asthma_dashboard/ad_dashboard&p=it&ind_id=ad16) came from the NY State Asthma Dashboard. The rat sighting data includes information for all rat-related 311 service requests from 2010 to the present. Variables include location type, facility type, borough, year, and coordinates (latitude and longitude). The asthma data set includes information on the prevalence of asthma rates among adults. Variables include general prevalence, borough, year, and the number of ER visits. 
+# Data and Cleaning Process
 
-Data cleaning included mutating various variables to meet our needs. For example, we combined “month,” “day,” and “year” to make one “date” variable, made the year variable numeric, and reduced the datasets by selecting the variables that were of particular interest to us. We also combined the rat sightings and asthma data sets by year and borough.
+This project uses two main datasets for our analysis.
+
+**Rat Sightings**
+
+The [Rat Sightings data](https://data.cityofnewyork.us/Social-Services/Rat-Sightings/3q43-55fe) is from NYC OpenData. This dataset includes information for all rat-related 311 service requests from 2010 to the present. We stored the data [locally? G drive?] since it was too large to upload to github. To clean the data, we changed the created_date variable from MM/DD/YYYY HH:MM into separate “month,” “day,” and “year” variables; made the year variable numeric; corrected capitalization fro address_type, city, and borough; recoded values for clarity; and filtered to remove observations in unspecified boroughs.  After cleaning the data, our key variables are: 
+
+* month: month of rat sighting service request
+* day: day of rat sighting service request
+* year: year of rat sighting service request
+* location_type: location type of rat sighting
+* address_type: address type of rat sighting
+* city: city of rat sighting
+* borough: borough of rat sighting
+* latitude: geo based latitude of incident location
+* longitude: geo based longitude of incident location
+
+**Asthma**
+
+The [Asthma Data](https://webbi1.health.ny.gov/SASStoredProcess/guest?_program=/EBI/PHIG/apps/asthma_dashboard/ad_dashboard&p=it&ind_id=ad16) is from the NY State Asthma Dashboard. The asthma data set includes information on asthma rates in the city. Variables include borough, year, the number of ER visits, age-adjusted rates by 10,000, and estimated annual rate per 100,000.
+
+For our analyses, we combined the two datasets by year and borough. 
 
 # Exploratory Analysis
+
+
 
 # Additional Analysis
 
