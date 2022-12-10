@@ -1,4 +1,4 @@
-name: "Rats! Rodent Exposure and Asthma Prevalence in NYC"
+name: "Rats! Rodent Exposure and Asthma Rates in NYC"
 output_dir: "."
 navbar:
   title: "Home"

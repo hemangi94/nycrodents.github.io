@@ -1,5 +1,5 @@
 ---
-title: "Rats! Rodent Exposure and Asthma Prevalence in NYC"
+title: "Rats! Rodent Exposure and Asthma Rates in NYC"
 output: 
   html_document:
     toc: true
