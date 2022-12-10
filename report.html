@@ -16,7 +16,7 @@
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -416,6 +416,34 @@ to the Upper East Side.</p>
 <li>How do rat sightings vary by location type?</li>
 <li>How are rodent trends associated with asthma trends?</li>
 </ul>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<p>The data used for this project came from two sources. The <a
+href="https://data.cityofnewyork.us/Social-Services/Rat-Sightings/3q43-55fe">rat
+data</a> came from NYC OpenData. The <a
+href="https://webbi1.health.ny.gov/SASStoredProcess/guest?_program=/EBI/PHIG/apps/asthma_dashboard/ad_dashboard&amp;p=it&amp;ind_id=ad16">asthma
+data</a> came from the NY State Asthma Dashboard. The rat sighting data
+includes information for all rat-related 311 service requests from 2010
+to the present. Variables include location type, facility type, borough,
+year, and coordinates (latitude and longitude). The asthma data set
+includes information on the prevalence of asthma rates among adults.
+Variables include general prevalence, borough, year, and the number of
+ER visits.</p>
+<p>Data cleaning included mutating various variables to meet our needs.
+For example, we combined “month,” “day,” and “year” to make one “date”
+variable, made the year variable numeric, and reduced the datasets by
+selecting the variables that were of particular interest to us. We also
+combined the rat sightings and asthma data sets by year and borough.</p>
+</div>
+<div id="exploratory-analysis" class="section level1">
+<h1>Exploratory Analysis</h1>
+</div>
+<div id="additional-analysis" class="section level1">
+<h1>Additional Analysis</h1>
+</div>
+<div id="discussion" class="section level1">
+<h1>Discussion</h1>
 </div>
 
 
