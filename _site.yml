@@ -13,8 +13,6 @@ navbar:
         href: asthma_analysis.html
     - text: "Statistical Analysis"
       href: statistical_analysis.html
-    - text: "Video Walk Through"
-      href: video.html
     - icon: fa-github fa-lg
       href: http://github.com/hemangi94/nycrodents.github.io
     - icon: fa-thin fa-file-code
