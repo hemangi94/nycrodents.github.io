@@ -1,9 +1,6 @@
 ---
 title: "Rats! Rodent Exposure and Asthma Prevalence in NYC"
-output: 
-  html_document:
-    toc: true
-    toc_float: true
+output: html_document
 ---
 
 **Exploring trends in rat sightings and their association with asthma rates in New York City**  
