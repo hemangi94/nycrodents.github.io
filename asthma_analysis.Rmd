@@ -6,3 +6,194 @@ output:
     toc_float: true
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(plotly)
+library(readr)
+library(patchwork)
+
+knitr::opts_chunk$set(
+	echo = TRUE,
+	warning = FALSE,
+	fig.width = 8, 
+  fig.height = 6,
+  out.width = "90%")
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis")
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+```
+
+```{r rat data, include=FALSE}
+rat_df = read_csv("Rat_Sightings.csv") %>%
+  janitor::clean_names() %>%
+  mutate(created_date = gsub(" .*","", created_date),
+         address_type = str_to_title(address_type),
+         city = str_to_title(city),
+         borough = str_to_title(borough),
+         location_type = recode(location_type, "Other (Explain Below)" = "Other")) %>%
+  separate(created_date, into = c("month", "day", "year"), sep = "/") %>%
+  mutate(year = as.numeric(year),
+         month = as.numeric(month),
+         day = as.numeric(day)) %>%
+  filter(borough != "Unspecified") %>%
+  select(month, day, year, location_type, address_type, city, borough, latitude, longitude)
+```
+
+```{r asthma data, include=FALSE}
+asthma_df = read_csv("asthma_ER_visits_adults.csv") %>%
+  janitor::clean_names() %>%
+  rename(
+    year = time
+  ) %>%
+   mutate(age_adjusted_rate_per_10_000 = as.numeric(age_adjusted_rate_per_10_000),
+         estimated_annual_rate_per_10_000 = as.numeric(estimated_annual_rate_per_10_000),
+         number = as.numeric(number)) %>%
+  filter(geo_type == "Borough") %>%
+  group_by(year, geography) %>%
+  select(year, geography, age_adjusted_rate_per_10_000, estimated_annual_rate_per_10_000, number)
+```
+
+
+```{r merge, include=FALSE}
+asthma_rat_df <- left_join(rat_df, asthma_df, by = c('year' = 'year', 'borough' = 'geography'))
+```
+
+## Asthma trends
+
+Next, we wanted to get a sense of asthma trends in New York City.
+
+### Total Number of Asthma ER Visits Per Year
+
+The line graph shows the total number of ER visits related to asthma per year in NYC. 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+asthma_num_df =
+  asthma_df %>%
+  mutate(
+    number = as.numeric(number), 
+    data = "Total asthma ER visits"
+  ) %>%
+  group_by(year, data) %>%
+  summarise(n_obs = sum(number, na.rm = TRUE))
+
+asthma_rate_df =
+  asthma_df %>%
+  mutate(
+    age_adjusted_rate_per_10_000 = as.numeric(age_adjusted_rate_per_10_000),
+    data = "Age adjusted asthma ER visit rate"
+  ) %>%
+  group_by(year, data) %>%
+  summarise(n_obs = mean(age_adjusted_rate_per_10_000, na.rm = TRUE))
+
+asthma_estimated_df =
+  asthma_df %>%
+  mutate(
+    estimated_annual_rate_per_10_000 = as.numeric(estimated_annual_rate_per_10_000), 
+    data = "Estimated annual asthma rate"
+  ) %>%
+  group_by(year, data) %>%
+  summarise(n_obs = mean(estimated_annual_rate_per_10_000, na.rm = TRUE))
+
+asthma_years_num_plot =
+  asthma_num_df %>%
+  ggplot(aes(x = year, y = n_obs)) + 
+  geom_line() +
+  scale_x_continuous(breaks = seq(2005, 2018, 1)) +
+  labs(title = "Total number of asthma ER visits per year",
+       x = "Year",
+       y = "Total number of asthma ER visits")
+  
+
+asthma_rate_estimated_plot = 
+  ggplot(data = asthma_rate_df, aes(x = year, y = n_obs, color = data)) + 
+  geom_line() +
+  geom_line(data = asthma_estimated_df) +
+  scale_x_continuous(breaks = seq(2005, 2018, 1)) +
+  labs(title = "Age adjusted vs. Estimated Asthma Rates Over The Years",
+       x = "Year",
+       y = "Rate per 10,000 people")
+  
+
+asthma_years_num_plot
+```
+
+Overall the total number of asthma-related ER visits rises steadily. We see 0 visits in 2015 because the dataset had no data for that year. 
+
+### Age-adjusted vs. estimated Asthma rates over time
+
+The line graph compares age-adjusted ER asthma rates over time to the estimated ER asthma rate. 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+asthma_rate_estimated_plot
+```
+
+This allowed us to see that there was little difference between the two variables. 
+
+###  Mean Asthma rate by borough
+
+The bar graph shows the mean ER asthma rates by borough through 2018. 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+asthma_rate_borough_plot = 
+  asthma_df %>% 
+  group_by(geography) %>% 
+  mutate(
+    age_adjusted_rate_per_10_000 = as.numeric(age_adjusted_rate_per_10_000),
+    geography = as.factor(geography)
+  ) %>%
+  summarise(
+    asthma_rate = mean(age_adjusted_rate_per_10_000, na.rm = TRUE)
+  ) %>%
+  mutate(geography = fct_reorder(geography, asthma_rate)) %>% 
+  ggplot(aes(x = geography, y = asthma_rate, fill = geography)) + 
+  geom_bar(stat = "identity") +
+  labs(
+    title = "Mean asthma rate per borough (2004-2018)",
+    x = "Borough",
+    y = "Mean Age-Adjusted Asthma Rate per 10,000",
+    fill = "Borough")
+
+asthma_rate_borough_plot
+```
+
+The Bronx has the highest asthma rate, followed by Manhattan and Brooklyn. Queens has the lowest rate. 
+
+### Mean Asthma rate by the borough over time
+
+The bar graph shows the mean ER asthma rates by borough over time.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+asthma_borough_time_plot = 
+  asthma_df %>% 
+  group_by(geography, year) %>% 
+  mutate(
+    age_adjusted_rate_per_10_000 = as.numeric(age_adjusted_rate_per_10_000),
+    geography = as.factor(geography)
+  ) %>%
+  summarise(
+    asthma_rate = mean(age_adjusted_rate_per_10_000, na.rm = TRUE)
+  ) %>%
+  ggplot(aes(x = year, y = asthma_rate, fill = geography)) +
+  geom_bar(stat = "identity",
+           position = "dodge") +
+  scale_x_continuous(breaks = seq(2005, 2018, by = 1)) +
+  labs(
+    title = "Mean Asthma ER Visits in Boroughs Over Time",
+    x = "Year",
+    y = "Mean Asthma ER Visits per 10,000",
+    fill = "Borough")
+
+asthma_borough_time_plot
+```
+
+The Bronx has the highest asthma rate, followed by Manhattan and Brooklyn. Queens has the lowest rate. The distribution of rates generally remains the same as what we saw in the overall mean asthma rate by borough. However, over time, we see that Brooklyn surpasses Manhattan’s asthma rate. 
