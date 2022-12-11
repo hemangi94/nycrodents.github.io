@@ -458,9 +458,71 @@ asthma_line =
 asthma_line + overall_rat_line
 ```
 
-
-
 # Statistical Analysis
+
+We wanted to run some statistical tests and models to see if there were any significant associations between rat sightings and asthma rates. 
+
+We used a linear regression model to describe the relationship between asthma rates and rat sightings. Age-adjusted asthma-related ER visit rates per 10,000 grouped by year were used as the dependent variable. The total number of rat sightings per year and the year were used as predictor variables. 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+rat_df2 = rat_df %>%
+  group_by(year) %>%
+  count() %>%
+  summarise(
+    n_rat_sightings = n
+  )
+
+asthma_df2 = asthma_df %>%
+  mutate(
+    age_adjusted_rate_per_10_000 = as.numeric(age_adjusted_rate_per_10_000)
+  ) %>%
+  group_by(year) %>%
+  summarise(
+    mean_asthma_rate = mean(age_adjusted_rate_per_10_000, na.rm = TRUE)
+  )
+
+asthma_rat_df2 = left_join(rat_df2, asthma_df2, by = 'year')
+
+asthma_rat_mod = lm( mean_asthma_rate ~ n_rat_sightings + year, data = asthma_rat_df2)
+
+asthma_rat_mod %>%
+  broom::tidy()
+```
+
+The slope coefficient for the total number of rat sightings per year was -4.25e-03, but it was found to be insignificant at the 95% confidence level as the p- value was 0.11 (>0.05). Thus, we can reject the null hypothesis and conclude that there is no association between asthma rates and rat sightings at the 0.05 level of significance, while controlling for years. 
+
+Next, we checked the following assumptions underlying this linear regression model to determine its validity. 
+
+**Testing Liner Relationship**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE }
+plot(asthma_rat_mod, 1)
+```
+
+* In case of a perfect linear relationship, there would be a horizontal line around 0 in the plot shown.
+* There does not seem to be an exact linear relationship between the outcome and predictor variables. This could be because of a high standard error caused by a low sample size.
+
+
+**Testing whether the residuals are normally distributed**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+hist(asthma_rat_mod$residuals)
+plot(asthma_rat_mod, 2)
+```
+
+* Both the histogram plot and the QQ plot indicate that the residuals are normally distributed.
+
+**Testing Homoscedasticity**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+plot(asthma_rat_mod, 3)
+
+# Breusch-Pagan test
+lmtest::bptest(asthma_rat_mod)
+```
+
+* To check the assumption of homoscedasticity, we first looked at the scale-location plot. Ideally, we want a horizontal line with more or less equally spread points around it. However, this was not the case with our data, which could be because of the small sample size. 
+* We then checked this assumption using the Breusch-Pagan test, which resulted in a p-value (0.16) greater than 0.05. Thus, our model violates the assumption of homoscedasticity.
 
 
 # Discussion
