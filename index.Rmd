@@ -7,8 +7,6 @@ output:
 ---
 
 **Exploring trends in rat sightings and their association with asthma-related emergency room visits in New York City**  
-By: Jenesis Merriman | Sara Kramer | Hemangi Modi | Yongzheng Li | Vasuda Kapoor
-
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/gv4TjsKTj44" frameborder="0" allowfullscreen></iframe>
@@ -19,3 +17,5 @@ New York City has always had a rat problem. They live in our apartments, they ri
 
 
 <img src="images/rat_nyc.png" style="width:50%">
+
+By: Jenesis Merriman (jhm2176), Sara Kramer (sk4970), Hemangi Modi (hbm2126), Yongzheng Li (yl4924), and Vasuda Kapoor (vk2480)
