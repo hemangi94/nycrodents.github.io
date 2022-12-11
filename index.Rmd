@@ -10,10 +10,12 @@ output:
 By: Jenesis Merriman | Sara Kramer | Hemangi Modi | Yongzheng Li | Vasuda Kapoor
 
 
-<img src="images/rat_nyc.png" style="width:50%">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gv4TjsKTj44" frameborder="0" allowfullscreen></iframe>
 
 
 ## Motivation
 New York City has always had a rat problem. They live in our apartments, they ride the subway with us, they walk in our streets, and they’re showing up more and more. Rat sightings have increased 71% since October 2020, encouraging city officials to declare a “war on rats.” As the war continues, we wanted to see what the data said.
 
 
+<img src="images/rat_nyc.png" style="width:50%">
