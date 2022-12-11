@@ -382,6 +382,8 @@ div.tocify {
 <p>We wanted to explore if the following question: Do asthma rates
 differ based on rat sightings?</p>
 <p><img src="statistical_analysis_files/figure-html/unnamed-chunk-3-1.png" width="90%" /></p>
+<p>From 2010 through 2018, as the age-adjusted rate of asthma decreased
+(especially after 2014) while rat sightings increased.</p>
 </div>
 <div id="statistical-analysis" class="section level1">
 <h1>Statistical Analysis</h1>
@@ -401,7 +403,7 @@ used as predictor variables.</p>
 ## 3 year                1.78       2.32        0.769   0.485</code></pre>
 <p>The slope coefficient for the total number of rat sightings per year
 was -4.25e-03, but it was found to be insignificant at the 95%
-confidence level as the p- value was 0.11 (&gt;0.05). Thus, we can
+confidence level as the p-value was 0.11 (&gt;0.05). Thus, we fail to
 reject the null hypothesis and conclude that there is no association
 between asthma rates and rat sightings at the 0.05 level of
 significance, while controlling for years.</p>
@@ -436,8 +438,9 @@ scale-location plot. Ideally, we want a horizontal line with more or
 less equally spread points around it. However, this was not the case
 with our data, which could be because of the small sample size.</li>
 <li>We then checked this assumption using the Breusch-Pagan test, which
-resulted in a p-value (0.16) greater than 0.05. Thus, our model violates
-the assumption of homoscedasticity.</li>
+resulted in a p-value (0.16) greater than 0.05. We fail to reject the
+null hypothesis and using this test, this assumption is not
+violated.</li>
 </ul>
 </div>
 

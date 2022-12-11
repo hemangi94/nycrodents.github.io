@@ -127,7 +127,7 @@ asthma_rate_estimated_plot =
 asthma_years_num_plot
 ```
 
-Overall the total number of asthma-related ER visits rises steadily. We see 0 visits in 2015 because the dataset had no data for that year. 
+Overall the total number of asthma-related ER visits rises steadily. We see zero visits in 2015 because the dataset had no data for that year. 
 
 ### Age-adjusted vs. estimated Asthma rates over time
 

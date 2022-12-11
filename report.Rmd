@@ -30,7 +30,7 @@ This project uses two main datasets for our analysis.
 
 **Rat Sightings**
 
-The [Rat Sightings data](https://data.cityofnewyork.us/Social-Services/Rat-Sightings/3q43-55fe) is from NYC OpenData. This dataset includes information for all rat-related 311 service requests from 2010 to the present. We stored the data [locally? G drive?] since it was too large to upload to github. To clean the data, we changed the created_date variable from MM/DD/YYYY HH:MM into separate “month,” “day,” and “year” variables; made the year variable numeric; corrected capitalization fro address_type, city, and borough; recoded values for clarity; and filtered to remove observations in unspecified boroughs.  After cleaning the data, our key variables are: 
+The [Rat Sightings data](https://data.cityofnewyork.us/Social-Services/Rat-Sightings/3q43-55fe) is from NYC OpenData. This dataset includes information for all rat-related 311 service requests from 2010 to the present. We stored the data [locally? G drive?] since it was too large to upload to github. To clean the data, we changed the created_date variable from MM/DD/YYYY HH:MM into separate “month,” “day,” and “year” variables; made the year variable numeric; corrected capitalization for address_type, city, and borough; recoded values for clarity; and filtered to remove observations in unspecified boroughs.  After cleaning the data, our key variables are: 
 
 * month: month of rat sighting service request
 * day: day of rat sighting service request
@@ -252,7 +252,7 @@ Overall, 3+ family apartment buildings had the highest number of sightings follo
 
 ### By Borough
 
-The following bar graph shows the distribution of number of sightings by top sighting locations by borough:
+The following bar graph shows the distribution of the number of sightings by top sighting locations by borough:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 location_grid =
@@ -365,7 +365,7 @@ asthma_rate_estimated_plot =
 asthma_years_num_plot
 ```
 
-Overall the total number of asthma-related ER visits rises steadily. We see 0 visits in 2015 because the dataset had no data for that year. 
+Overall the total number of asthma-related ER visits rises steadily. We see zero visits in 2015 because the dataset had no data for that year. 
 
 ### Age-adjusted vs. estimated Asthma rates over time
 
@@ -438,7 +438,7 @@ The Bronx has the highest asthma rate, followed by Manhattan and Brooklyn. Queen
 
 ## Asthma versus Rat sighting
 
-Finally, we wanted to start looking at associations between the two datasets. The side-by-side line plots show the mean age-adjusted ER visits rate per 10,000 of asthma over time next to rat sightings over time. 
+Finally, we wanted to start looking at associations between the two datasets. The side-by-side line plots show the mean age-adjusted asthma-related ER visits rate per 10,000 next to rat sightings over time. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 asthma_line =
@@ -457,6 +457,9 @@ asthma_line =
 
 asthma_line + overall_rat_line
 ```
+
+From 2010 through 2018, as the age-adjusted rate of asthma decreased (especially after 2014) while rat sightings increased. 
+
 
 # Statistical Analysis
 
@@ -489,7 +492,7 @@ asthma_rat_mod %>%
   broom::tidy()
 ```
 
-The slope coefficient for the total number of rat sightings per year was -4.25e-03, but it was found to be insignificant at the 95% confidence level as the p- value was 0.11 (>0.05). Thus, we can reject the null hypothesis and conclude that there is no association between asthma rates and rat sightings at the 0.05 level of significance, while controlling for years. 
+The slope coefficient for the total number of rat sightings per year was -4.25e-03, but it was found to be insignificant at the 95% confidence level as the p-value was 0.11 (>0.05). Thus, we fail to reject the null hypothesis and conclude that there is no association between asthma rates and rat sightings at the 0.05 level of significance, while controlling for years. 
 
 Next, we checked the following assumptions underlying this linear regression model to determine its validity. 
 
@@ -522,7 +525,7 @@ lmtest::bptest(asthma_rat_mod)
 ```
 
 * To check the assumption of homoscedasticity, we first looked at the scale-location plot. Ideally, we want a horizontal line with more or less equally spread points around it. However, this was not the case with our data, which could be because of the small sample size. 
-* We then checked this assumption using the Breusch-Pagan test, which resulted in a p-value (0.16) greater than 0.05. Thus, our model violates the assumption of homoscedasticity.
+* We then checked this assumption using the Breusch-Pagan test, which resulted in a p-value (0.16) greater than 0.05. We fail to reject the null hypothesis and using this test, this assumption is not violated. 
 
 
 # Discussion

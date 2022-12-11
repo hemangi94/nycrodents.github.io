@@ -1,12 +1,12 @@
 ---
-title: "Rats! Rodent Exposure and Asthma Rates in NYC"
+title: "Rats! Rat Sightings and Asthma in NYC"
 output: 
   html_document:
     toc: true
     toc_float: true
 ---
 
-**Exploring trends in rat sightings and their association with asthma rates in New York City**  
+**Exploring trends in rat sightings and their association with asthma-related emergency room visits in New York City**  
 By: Jenesis Merriman | Sara Kramer | Hemangi Modi | Yongzheng Li | Vasuda Kapoor
 
 
@@ -14,8 +14,6 @@ By: Jenesis Merriman | Sara Kramer | Hemangi Modi | Yongzheng Li | Vasuda Kapoor
 
 
 ## Motivation
-New York City has always had a rat problem. They live in our apartments, they ride the subway with us, they walk in our streets, and they’re showing up more and more. Rat sightings have increased 71% since October 2020, encouraging city officials to declare a “war on rats.”
+New York City has always had a rat problem. They live in our apartments, they ride the subway with us, they walk in our streets, and they’re showing up more and more. Rat sightings have increased 71% since October 2020, encouraging city officials to declare a “war on rats.” As the war continues, we wanted to see what the data said.
 
-## Project Scope
-We examined the number of rat sightings throughout New York City as well as rates of ER visits for asthma in the city. The data was easy to find for this level through NYC OpenData sources. We were limited in possible confounders based on what was in the datasets and what years had sufficient data. 
 

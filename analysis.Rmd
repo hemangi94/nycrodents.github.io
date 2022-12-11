@@ -8,7 +8,7 @@ output:
 
 **Rat Sightings**
 
-The [Rat Sightings data](https://data.cityofnewyork.us/Social-Services/Rat-Sightings/3q43-55fe) is from NYC OpenData. This dataset includes information for all rat-related 311 service requests from 2010 to the present. We stored the data [locally? G drive?] since it was too large to upload to github. To clean the data, we changed the created_date variable from MM/DD/YYYY HH:MM into separate “month,” “day,” and “year” variables; made the year variable numeric; corrected capitalization fro address_type, city, and borough; recoded values for clarity; and filtered to remove observations in unspecified boroughs.  After cleaning the data, our key variables are: 
+The [Rat Sightings data](https://data.cityofnewyork.us/Social-Services/Rat-Sightings/3q43-55fe) is from NYC OpenData. This dataset includes information for all rat-related 311 service requests from 2010 to the present. We stored the data [locally? G drive?] since it was too large to upload to github. To clean the data, we changed the created_date variable from MM/DD/YYYY HH:MM into separate “month,” “day,” and “year” variables; made the year variable numeric; corrected capitalization for address_type, city, and borough; recoded values for clarity; and filtered to remove observations in unspecified boroughs.  After cleaning the data, our key variables are: 
 
 * month: month of rat sighting service request
 * day: day of rat sighting service request
@@ -133,7 +133,6 @@ rat_line
 
 Based on the plot, we see that the Bronx, Brooklyn, Manhattan, and Queens generally follow similar trends as NYC overall. Of these boroughs, the Bronx deviates the most, showing a decrease in rat sightings since 2021. Staten Island is different from all other boroughs and NYC overall. Rat sightings there have remained steady, and low, since 2010.
 
-
 ## Sightings Frequency
 
 ### By Borough
@@ -215,7 +214,7 @@ Overall, 3+ family apartment buildings had the highest number of sightings follo
 
 ### By Borough
 
-The following bar graph shows the distribution of number of sightings by top sighting locations by borough:
+The following bar graph shows the distribution of the number of sightings by top sighting locations by borough:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 location_grid =
